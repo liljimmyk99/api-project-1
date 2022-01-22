@@ -56,7 +56,8 @@
   <h1>Example event binding</h1>
   <script type="module">
     import {html, render} from "lit";
-    function addIpTag(e) {
+
+    function addIpTag() {
       const userIp = document.createElement("user-ip");
       document.querySelector("#demo").appendChild(userIp);
     }

@@ -11,12 +11,15 @@ export class LocationFromIP extends LitElement {
     super();
     this.UserIpInstance = new UserIP();
     this.locationEndpoint = 'https://freegeoip.app/json/';
-    this.long = 10.305385;
-    this.lat = 77.923029;
+    this.long = null;
+    this.lat = null;
   }
 
   static get properties() {
-    return {};
+    return {
+      lat: { type: Number, reflect: true },
+      long: { type: Number, reflect: true },
+    };
   }
 
   firstUpdated(changedProperties) {
@@ -26,6 +29,7 @@ export class LocationFromIP extends LitElement {
     this.getGEOIPData();
   }
 
+  // Get Lat & Long here
   async getGEOIPData() {
     const IPClass = new UserIP();
     const userIPData = await IPClass.updateUserIP();
@@ -38,6 +42,9 @@ export class LocationFromIP extends LitElement {
       })
       .then(data => {
         console.log(data);
+        this.lat = data.latitude;
+        this.long = data.longitude;
+        console.log(`${this.lat} ${this.long}`);
         return data;
       });
   }
@@ -59,7 +66,9 @@ export class LocationFromIP extends LitElement {
   render() {
     // this function runs every time a properties() declared variable changes
     // this means you can make new variables and then bind them this way if you like
+    console.log(`Rendering coordinates as: ${this.lat} & ${this.long}`);
     const url = `https://maps.google.com/maps?q=${this.long},${this.lat}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+    console.log(`URL: ${url}`);
     return html`<iframe title="Where you are" src="${url}"></iframe> `;
   }
 }
