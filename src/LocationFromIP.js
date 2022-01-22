@@ -41,9 +41,10 @@ export class LocationFromIP extends LitElement {
         return false;
       })
       .then(data => {
+        // Why does this work?????????? If I do it the opposite way, it says I am in antartica
         console.log(data);
-        this.lat = data.latitude;
-        this.long = data.longitude;
+        this.long = data.latitude;
+        this.lat = data.longitude;
         console.log(`${this.lat} ${this.long}`);
         return data;
       });
