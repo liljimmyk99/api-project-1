@@ -49,7 +49,27 @@
     }, 100);
   </script>
   <h1>Location based on IP address as a map</h1>
-  <location-from-ip></location-from-ip>
+  <label for="latValue">Latitude: </label>
+  <input type="text" id="latValue" name="latValue"><br>
+  <label for="longValue">Longitude: </label>
+  <input type="text" id="longValue" name="longValue"><br>
+  <div id="update"></div>
+  <script type="module">
+    import {html, render} from "lit";
+
+    let lat = "";
+    let long = "";
+
+    function updateLocation() {
+      console.log("I ran")
+      // Getting an uncaught typeError on this???? 
+      lat = document.querySelector("#latvalue").value;
+      long = document.querySelector("#longvalue").value;
+    }
+
+    render(html`<button @click="${updateLocation}">Update</button><br><location-from-ip lat=${lat} long=${long}></location-from-ip>`, document.querySelector("#update"));
+  </script>
+  
   <script type="module">
     import "./src/LocationFromIP.js";
   </script>
