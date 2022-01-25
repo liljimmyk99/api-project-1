@@ -63,8 +63,9 @@
     function updateLocation() {
       console.log("I ran")
       // Getting an uncaught typeError on this???? 
-      lat = document.querySelector("#latvalue").value;
-      long = document.querySelector("#longvalue").value;
+      lat = document.querySelector("#latValue").value;
+      long = document.querySelector("#longValue").value;
+      render(html`<button @click="${updateLocation}">Update</button><br><location-from-ip lat=${lat} long=${long}></location-from-ip>`, document.querySelector("#update"));
     }
 
     render(html`<button @click="${updateLocation}">Update</button><br><location-from-ip lat=${lat} long=${long}></location-from-ip>`, document.querySelector("#update"));
